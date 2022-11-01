@@ -50,6 +50,7 @@ const playRound = function (playerSelection, computerSelection) {
     // console.log(playerSelection);
     computerSelection = computerSelection.toUpperCase();
     // console.log(computerSelection);
+
     if (playerSelection === computerSelection) {
         return "It's a tie!"
     }
