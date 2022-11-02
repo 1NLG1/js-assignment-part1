@@ -35,22 +35,24 @@
 // }
 
 
-// 4. Main Javascript Project
+// 4. Main Javascript Project (rock-paper-scissors game)
 const computerPlay = function () {
     const [min, max] = [0, 2];
     const arr = ['Rock', 'Paper', 'Scissors'];
     let random = Math.floor(Math.random() * (max-min + 1)) + min;
-    return arr[random];
+    return arr[random].toUpperCase();
 }
 
-// console.log(computerPlay());
+const userPlay = function () {
+    let userChoice = prompt("Do you choose ROCK, PAPER or SCISSORS?").toUpperCase();
+    while (userChoice !== 'ROCK' && userChoice !== 'PAPER' && userChoice !== 'SCISSORS') {
+        userChoice = prompt("Pick only between rock, paper and scissors").toUpperCase();
+    }
+    return userChoice;
+}
+
 
 const playRound = function (playerSelection, computerSelection) {
-    playerSelection = playerSelection.toUpperCase();
-    // console.log(playerSelection);
-    computerSelection = computerSelection.toUpperCase();
-    // console.log(computerSelection);
-
     if (playerSelection === computerSelection) {
         return "It's a tie!"
     }
@@ -78,21 +80,17 @@ const playRound = function (playerSelection, computerSelection) {
             return 'You won! scissors beats paper'
         }
     }
+
+
 }
 
-// const playerSelection = 'rock';
-// const computerSelection = computerPlay();
-
-// console.log(playRound(playerSelection, computerSelection));
 
 const game = function () {
     playerScore = 0;
     computerScore = 0;
     for (let i = 1; i <= 5; i++) {
-        // let playerSelection = prompt('Let\'s play rock, paper, scissors');
-        let playerSelection = prompt(`Round ${i} Let's play rock, paper, scissors`);
+        let playerSelection = userPlay();
         let computerSelection = computerPlay();
-        // console.log(playerSelection);
         console.log(`Round ${i}:`,playRound(playerSelection, computerSelection));
         if (playRound(playerSelection, computerSelection).includes('You won!')) {
             playerScore++; 
@@ -100,8 +98,6 @@ const game = function () {
             computerScore++;
         }
     }
-    // console.log(playerScore);
-    // console.log(computerScore);
     if (playerScore === computerScore) {
         return 'The match is a tie!'
     } else if (playerScore < computerScore) {
