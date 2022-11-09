@@ -1,1 +1,1 @@
-# js-assignment-part1
+rock-paper-scissors game
